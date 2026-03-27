@@ -11,10 +11,11 @@ if(menuToggle) {
 // Add interaction to navigation links
 document.querySelectorAll('.pill-nav nav a, .pill-nav .btn-primary').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
         // If it's a hash link, handle smooth scroll
-        if(this.getAttribute('href').startsWith('#')) {
+        if(href && href.startsWith('#')) {
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
+            const targetId = href.substring(1);
             const targetSection = document.getElementById(targetId);
             if (targetSection) {
                 window.scrollTo({
@@ -100,5 +101,41 @@ if (window.matchMedia("(pointer: fine)").matches) {
     interactables.forEach(el => {
         el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovering'));
         el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovering'));
+    });
+}
+
+// Modal Logic
+const modal = document.getElementById('contactModal');
+const openModalBtn = document.getElementById('openModalBtn');
+const closeModalBtn = document.querySelector('.close-modal');
+
+if (modal && openModalBtn && closeModalBtn) {
+    // Open modal
+    openModalBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+
+    // Close modal
+    closeModalBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     });
 }
