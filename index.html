@@ -28,7 +28,7 @@
                 <a href="#projects">Portfolio</a>
                 <a href="#hobbies">Hobbies</a>
             </nav>
-            <a href="#contact" class="btn-primary pill-btn">Let's Talk</a>
+            <button id="openModalBtn" class="btn-primary pill-btn">Let's Talk</button>
         </div>
     </header>
 
@@ -283,7 +283,20 @@
     <footer id="contact">
         <div class="footer-cta">
             <h2 class="hollow-text light">READY TO GROW?</h2>
-            <a href="mailto:hetanshushah279@gmail.com" class="btn-primary huge-pill">Contact Me</a>
+            
+            <form action="https://formsubmit.co/hetanshushah279@gmail.com" method="POST" class="footer-contact-form">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <div class="footer-form-row">
+                    <input type="text" name="name" required placeholder="Your Name" class="footer-form-input">
+                    <input type="email" name="email" required placeholder="Your Email" class="footer-form-input">
+                </div>
+                <div class="footer-form-row">
+                    <textarea name="message" required placeholder="Your Message" rows="3" class="footer-form-input"></textarea>
+                </div>
+                <button type="submit" class="btn-primary huge-pill submit-btn">Contact Me</button>
+            </form>
             
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/hetanshu-shah/" target="_blank" rel="noopener noreferrer" class="social-pill linkedin-btn">
@@ -305,6 +318,31 @@
         </div>
     </footer>
 
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-content pill-card">
+            <button class="close-modal">&times;</button>
+            <h2 class="modal-title">Let's Talk</h2>
+            <p class="modal-subtitle">Fill out the form below and I'll get back to you shortly.</p>
+            <form action="https://formsubmit.co/hetanshushah279@gmail.com" method="POST" class="contact-form">
+                <!-- Honeypot -->
+                <input type="text" name="_honey" style="display:none">
+                <!-- Disable Captcha -->
+                <input type="hidden" name="_captcha" value="false">
+                
+                <div class="form-group">
+                    <input type="text" name="name" id="name" required placeholder="Your Name" class="form-input">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" id="email" required placeholder="Your Email" class="form-input">
+                </div>
+                <div class="form-group">
+                    <textarea name="message" id="message" required placeholder="Your Message" rows="4" class="form-input"></textarea>
+                </div>
+                <button type="submit" class="btn-primary huge-pill" style="font-size: 1.1rem; padding: 15px 40px; border: none; width: 100%; justify-content: center;">Send Message</button>
+            </form>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 
